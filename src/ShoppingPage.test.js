@@ -108,4 +108,13 @@ describe("the Product's display number", ()=>{
 
    });
 
+   it("should return to zero after clicking Add to Cart",async ()=>{
+        let secondProduct = screen.getAllByRole("product")[1];
+        let plusBtn = within(secondProduct).getByRole("increase");
+        userEvent.click(plusBtn);
+        expect(await within(secondProduct).getByText("1")).toBeInTheDocument();
+        userEvent.click(within(secondProduct).getByRole("add-to-cart"));
+        expect(await within(secondProduct).getByText("0")).toBeInTheDocument();
+   })
+
 });

@@ -6,7 +6,7 @@ import ShoppingPage from "./ShoppingPage";
 export const Routes = ()=>{
     return (<BrowserRouter>
         <Switch>
-            <Route exact path="/home"><HomePage /></Route>
+            <Route exact path="/"><HomePage /></Route>
             <Route exact path="/shopping" component={ShoppingPage} />
         </Switch>
     </BrowserRouter>);
