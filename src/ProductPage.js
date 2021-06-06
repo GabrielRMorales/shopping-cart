@@ -4,9 +4,9 @@ import Product from "./Product";
 
 const ProductPage = (props)=>{
     const productList = props.products.map((pr,index)=>{
-        return <Product title={pr} key={index} />
+        return <Product title={pr} key={index} onClick={props.click} />
     });
-    return (<div role="product-page">
+    return (<div role="product-page" > 
    {productList}
     </div>);
 }
