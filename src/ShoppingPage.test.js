@@ -56,14 +56,14 @@ describe("the Product component",()=>{
        
         expect(within(firstProduct).getByRole("increase")).toBeInTheDocument();
         expect(screen.getAllByText("+")).not.toBeNull();
-        expect(screen.getAllByText("-")).toHaveLength(4);
+        expect(screen.getAllByText("–")).toHaveLength(4);
     });
 
    it("has a - Quantity button", ()=>{
        
        expect(within(firstProduct).getByRole("decrease")).toBeInTheDocument();
-       expect(screen.getAllByText("-")).not.toBeNull();
-       expect(screen.getAllByText("-")).toHaveLength(4);
+       expect(screen.getAllByText("–")).not.toBeNull();
+       expect(screen.getAllByText("–")).toHaveLength(4);
     });
 
     it("should have an Add to Cart button", ()=>{
@@ -72,20 +72,24 @@ describe("the Product component",()=>{
     });
 
     it("shows a number, starting at 0", ()=>{
-        expect(within(firstProduct).getByText("0")).toBeInTheDocument();
+        expect(within(firstProduct).getByRole("product-quantity")).toHaveValue(0);
     })
 
 });
 
 describe("the Product's display number", ()=>{
-    
+    let firstProduct;
+    beforeEach(()=>{
+        firstProduct = screen.getAllByRole("product")[0];
+    });
+
   it("should increase when the + button is clicked", async ()=>{
-      let firstProduct = screen.getAllByRole("product")[0];
+    
       let plusBtn = within(firstProduct).getByRole("increase");
       userEvent.click(plusBtn);
-      expect(await within(firstProduct).getByText("1")).toBeInTheDocument();
+      expect(await within(firstProduct).getByRole("product-quantity")).toHaveValue(1);
       userEvent.click(plusBtn);
-      expect(await within(firstProduct).getByText("2")).toBeInTheDocument();
+      expect(await within(firstProduct).getByRole("product-quantity")).toHaveValue(2);
   });
 
   it("should decrease when the - button is clicked", async ()=>{
@@ -94,7 +98,14 @@ describe("the Product's display number", ()=>{
       let plusBtn = within(firstProduct).getByRole("increase");
       userEvent.click(plusBtn);
       userEvent.click(minusBtn);
-      expect(await within(firstProduct).getByText("0")).toBeInTheDocument();
+      expect(await within(firstProduct).getByRole("product-quantity")).toHaveValue(0);
+
+  });
+
+  it("should allow a user to type in a quantity", async ()=>{
+      let input = within(firstProduct).getByRole("product-quantity");
+      userEvent.type(input, "5");
+      expect(await input).toHaveValue(5);
 
   });
   
@@ -104,7 +115,7 @@ describe("the Product's display number", ()=>{
       let plusBtn = within(firstProduct).getByRole("increase");
         userEvent.click(minusBtn);
         userEvent.click(minusBtn);
-        expect(await within(firstProduct).getByText("0")).toBeInTheDocument();
+        expect(await within(firstProduct).getByRole("product-quantity")).toHaveValue(0);
 
    });
 
@@ -112,9 +123,9 @@ describe("the Product's display number", ()=>{
         let secondProduct = screen.getAllByRole("product")[1];
         let plusBtn = within(secondProduct).getByRole("increase");
         userEvent.click(plusBtn);
-        expect(await within(secondProduct).getByText("1")).toBeInTheDocument();
+        expect(await within(secondProduct).getByRole("product-quantity")).toHaveValue(1);
         userEvent.click(within(secondProduct).getByRole("add-to-cart"));
-        expect(await within(secondProduct).getByText("0")).toBeInTheDocument();
+        expect(await within(secondProduct).getByRole("product-quantity")).toHaveValue(0);
    })
 
 });
