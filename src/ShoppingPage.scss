@@ -1,9 +1,25 @@
 %grid {
     display: grid;
 }
+%text {
+    color: white;
+    font-family: Arial;
+    font-size: 18px;
+}
+$primary-color: red;
+
 #shopping-cart {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    align-items: center;
+}
+#total-items {
+    display: flex;
+}
+#project-brand {
+    background-color: $primary-color;
+    @extend %text;
+    font-size: 29px;
 }
 #shopping-page {
     @extend %grid;
@@ -11,6 +27,8 @@
 }
 #product-page {
    @extend %grid;
+  
+   border: 1px solid rgb(36, 34, 34);
     grid-template-columns: repeat(4, 25%);
 }
 @for $i from 2 through 5 {
@@ -18,9 +36,15 @@
         grid-column: #{$i}-1 / #{$i};
     }
 }
-
-.product {
+.product, .controls {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.add-to-cart {
+    background-color: $primary-color;
+    @extend %text;
+    border-radius: 10px;
+    border: none;
 }
