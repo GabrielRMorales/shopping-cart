@@ -87,9 +87,9 @@ describe("the Product's display number", ()=>{
     
       let plusBtn = within(firstProduct).getByRole("increase");
       userEvent.click(plusBtn);
-      expect(await within(firstProduct).getByRole("product-quantity")).toHaveValue(1);
+      expect( within(firstProduct).getByRole("product-quantity")).toHaveValue(1);
       userEvent.click(plusBtn);
-      expect(await within(firstProduct).getByRole("product-quantity")).toHaveValue(2);
+      expect( within(firstProduct).getByRole("product-quantity")).toHaveValue(2);
   });
 
   it("should decrease when the - button is clicked", async ()=>{

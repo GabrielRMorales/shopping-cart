@@ -33,13 +33,14 @@ xit("should render the home page by default", () => {
   //expect(screen.getByText(/HomePage/i)).toBeInTheDocument();
 });
 
-xit("should render the Shopping Page", ()=>{
+it("should render the Shopping Page", ()=>{
     ShoppingPage.mockImplementation(()=>(<div>ShoppingPage</div>));
 
     render(<MemoryRouter initialEntries={["/shopping"]}>
     <Routes />
     </MemoryRouter>);
     expect(screen.getByText(/ShoppingPage/i)).toBeInTheDocument();
+    expect(screen.getByText(/Home/i)).toBeInTheDocument();
 
 });
 

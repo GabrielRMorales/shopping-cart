@@ -1,3 +1,14 @@
+#primary-nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding-left: 5%;
+}
+
 #shopping-page, #product-page {
   display: -ms-grid;
   display: grid;
@@ -29,7 +40,7 @@
 
 #project-brand {
   background-color: red;
-  font-size: 29px;
+  font-size: 49px;
 }
 
 #shopping-page {
@@ -62,6 +73,10 @@
   grid-column: 5-1 / 5;
 }
 
+#total-item-number {
+  margin-left: 5px;
+}
+
 .product, .controls {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -75,9 +90,15 @@
           align-items: center;
 }
 
+.product input, .controls input {
+  margin-bottom: 5px;
+}
+
 .add-to-cart {
   background-color: red;
   border-radius: 10px;
   border: none;
+  padding-top: 10px;
+  margin: 5px 0;
 }
 /*# sourceMappingURL=ShoppingPage.css.map */
